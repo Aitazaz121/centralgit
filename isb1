@@ -26,4 +26,5 @@ if response.status_code == 201:
     print(f"Repository URL: {repo['html_url']}")
 else:
     print(f"Failed to create repository. Status code: {response.status_code}")
-    print(f"Error: {response.text}")
+    print(f"Error: {response.text}")this code runs smoothly
+i like it.
