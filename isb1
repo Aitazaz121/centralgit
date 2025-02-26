@@ -1,1 +1,29 @@
-hello,how are you
+import requests
+import json
+
+# Replace with your GitHub username and personal access token
+GITHUB_USERNAME = 'your_username'
+GITHUB_TOKEN = 'your_personal_access_token'
+
+# GitHub API URL for creating repositories
+url = "https://api.github.com/user/repos"
+
+# The repository details you want to create
+repo_data = {
+    "name": "new-repository-name",  # Replace with your desired repo name
+    "description": "This is a new repository created via API.",  # Optional description
+    "private": False,  # Set to True if you want the repo to be private
+    "auto_init": True,  # Initializes the repository with a README
+}
+
+# Send the POST request to GitHub API to create the repo
+response = requests.post(url, auth=(GITHUB_USERNAME, GITHUB_TOKEN), json=repo_data)
+
+# Check the response
+if response.status_code == 201:
+    print("Repository created successfully!")
+    repo = response.json()
+    print(f"Repository URL: {repo['html_url']}")
+else:
+    print(f"Failed to create repository. Status code: {response.status_code}")
+    print(f"Error: {response.text}")
